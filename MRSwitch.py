@@ -15,16 +15,18 @@ powerSwitchPin = 24
 GPIO.setup(powerSwitchPin, GPIO.OUT)
 GPIO.output(powerSwitchPin, GPIO.LOW)
 isLightOn = False
+i = 0
 
 
 CHECK_FREQ = 0.1 #Sleep time for the loop
 
 
 def handleBoolean(value):
-    global lightOn
     print("Received: "+str(value))
+    global isLightOn
     if (value == 'true' or str(value) == 'True'):
         isLightOn = not isLightOn
+        # print(str(isLightOn))
         #GPIO.output(powerSwitchPin, True)
 
 brew.subscribe("flipLight", handleBoolean)
@@ -34,8 +36,9 @@ try:
     #print("Should be looping")
     print("Press Ctrl-C to quit.")
     while True:
-        #print("LOOP")
-        GPIO.output(powerSwitchPin, False)
+        # print("LOOP " + str(i))
+        # i += 1
+        # GPIO.output(powerSwitchPin, False)
         # if (GPIO.input(24) == False):
 		#     print("Button Pushed")
 		#     brew.publish('buttonPress', True)
