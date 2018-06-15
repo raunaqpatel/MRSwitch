@@ -25,7 +25,9 @@ def handleBoolean(value):
     print("Received: "+str(value))
     global isLightOn
     if (value == 'true' or str(value) == 'True'):
-        isLightOn = not isLightOn
+        isLightOn = True
+    if (value == 'false' or str(value)== 'False'):
+        isLightOn = False    
         # print(str(isLightOn))
         #GPIO.output(powerSwitchPin, True)
 
@@ -36,14 +38,8 @@ try:
     #print("Should be looping")
     print("Press Ctrl-C to quit.")
     while True:
-        # print("LOOP " + str(i))
-        # i += 1
-        # GPIO.output(powerSwitchPin, False)
-        # if (GPIO.input(24) == False):
-		#     print("Button Pushed")
-		#     brew.publish('buttonPress', True)
         GPIO.output(powerSwitchPin, isLightOn)
-        time.sleep(CHECK_FREQ)
+        # time.sleep(CHECK_FREQ)
     
 finally:
     GPIO.cleanup()
